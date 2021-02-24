@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <title>Online Library</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header class=wrapper>
+        <h1 class="main-heading"><b>Online Library<b></h1><br>
+        <nav>
+            
+                {% if user.is_superuser %}
+
+                    <p class="welcome-message">Welcome to Online Library Store!!!</p>
+                    <div class="logout">
+                    <form class="logout-link" action="{% url 'accounts:logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                    </form>
+                    </div>
+                    <li><a href="{% url 'books_cds:home' %}">Home</a></li>
+                    <li><a href="{% url 'books_cds:book_add' %}">Add New Book</a></li>
+                    <li><a href="{% url 'books_cds:cd_add' %}">Add New CD</a></li>
+                    <li><a href="{% url 'reserve:allreserves' %}">View All Users Reserves</a></li>
+                
+                {% elif user.is_authenticated %}
+                
+                    <p class="welcome-message">Welcome to Online Library Store!!!</p>
+                    <div class="logout">
+                    <form class="logout-link" action="{% url 'accounts:logout' %}" method="POST">
+	            		{% csrf_token %}
+	            		<button type="submit">Logout</button>
+	            	</form>
+                    </div>
+                    <a href="{% url 'books_cds:home' %}">Home</a>
+                    <br>
+                    <a href="{% url 'reserve:myreserves' %}">View My Reserves</a>
+               
+	            {% else %}
+
+                    <div class="menu-options">
+                    <p class="welcome-message">Welcome to Online Library Store!!!</p>
+                    <div class="login-signup">
+	            	    <a href="{% url 'accounts:login' %}">Login</a> or
+	            	    <a href="{% url 'accounts:signup' %}">Signup</a>
+                    </div>
+                    <br>
+                    <br>
+                    </div>
+
+	            {% endif %}
+                
+            
+        </nav>
+    </header>
+
+    <div class=wrapper>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    
+</body>
+</html>

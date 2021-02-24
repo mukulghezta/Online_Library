@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="logged-in-username">
+        <p>User: {{ logged_in_user }}</p>
+    </div>
+    
+    <h1><b>All Book Reserves</b></h1>
+    {% for i in bookreserves %}
+        <h5>Username: {{ i.user_id }}</h5> 
+        <h5>Book Name: {{ i.book_id }}</h5>
+        <br>
+    {% endfor %}
+    <br>
+    <br>
+    <h1>All CD Reserves</h1>
+    {% for i in cdreserves %}
+        <h5>Username: {{ i.user_id }}</h5> 
+        <h5>CD Name: {{ i.cd_id }}</h5>
+        <br>
+    {% endfor %}
+{% endblock %}

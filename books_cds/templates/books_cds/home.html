@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% for message in messages %}
+    <h4> {{ message }}</h4>
+    {% endfor %}
+    <br>
+    
+    {% if user.is_superuser %}
+        <div class="logged-in-username">
+            <p>User: {{ logged_in_user }}</p>
+        </div>
+    {% elif user.is_authenticated %}
+        <div class="logged-in-username">
+            <p>User: {{ logged_in_user }}</p>
+        </div>
+        <ul class="heading-list">
+            <li><h5>Browse through our catalogue of Books and CDs.</h5></li>
+            <li><h5>Reserve as per your choice.</h5></li>
+            <li><h5>You can reserve upto 2 books and 2 CDs at once.</h5></li>
+            <br>
+            <br>
+        </ul>
+    {% endif %}
+
+        <div class="items">
+            <h1><b>Books</b></h1>
+            <ol>
+            {% for i in books %}
+                <div class=item>
+                <li><a href="{% url 'books_cds:book_detail' book_id=i.book_id %}"><b>{{ i.book_name }}</b></a> by {{ i.book_author }} ({{ i.book_language }})</li><br>
+                </div>
+            {% endfor %}
+            </ol>
+            <br>
+        </div>
+        
+        <div class="items">
+            <h1><b>CDs</b></h1>
+            <ol>
+            {% for i in cds %}
+                <div class=item>
+                <li><a href="{% url 'books_cds:cd_detail' cd_id=i.cd_id %}"><b>{{ i.cd_name }}</b></a> by {{ i.cd_artist }}  ({{ i.cd_language }})</li><br>
+                </div>
+            {% endfor %}
+            </ol>
+        </div>
+    
+
+    
+
+
+{% endblock %}

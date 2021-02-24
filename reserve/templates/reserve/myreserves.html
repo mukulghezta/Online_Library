@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    {% for message in messages %}
+    <h4> {{ message }}</h4>
+    {% endfor %}
+
+    <div class="logged-in-username">
+        <p>User: {{ logged_in_user }}</p>
+    </div>
+
+    
+
+    <h3><b>You have reserved {{ total_book_items }} books and {{ total_cd_items }} CDs.</b></h3>
+    <h4>Currently you have <b>{{ bookpastduedates }}</b> past due books and <b>{{ cdpastduedates }}</b> past due cds.</h4><br>
+
+    <h3>Books reserved: {{ total_book_items }}</h3>
+    <ol>
+    {% for i in bookreserves %}
+        <li>
+            <h5>Book Name: {{ i.book_id }} </h5>
+            <h5>Book Reserved on: {{ i.reserve_date }} </h5>
+            <h5>Due Date {{ i.due_date }}</h5>
+            <h5>You have <b>{{ days_left_to_return_book }}</b> days left to return this book.</h5>
+            <a href="{% url 'reserve:releasereserve' id=i.id%}">Release reserve</a>
+        </li><br>
+    {% endfor %}
+    </ol>
+
+    <h3>CDs reserved: {{ total_cd_items }}</h3>
+    <ol>
+    {% for i in cdreserves %}
+        <li>
+            <h5>CD Name: {{ i.cd_id }}</h5>
+            <h5>Due Date {{ i.due_date }}</h5>
+            <h5>You have <b>{{ days_left_to_return_cd }}</b> days left to return this book.</h5>
+            <a href="{% url 'reserve:releasecdreserve' id=i.id%}">Release reserve</a>
+        </li><br>
+    {% endfor %}
+    </ol>
+
+    
+{% endblock %}

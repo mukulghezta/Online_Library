@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ book.book_name }}</h1>
+    <h4>Book Title: {{ book.book_name }}</h4>
+    <h4>Book Author: {{ book.book_author }}</h4>
+    <h4>Book Language: {{ book.book_language }}</h4>
+
+    {% if user.is_superuser %}
+        <h4>Book Quantity: {{ book.book_quantity }}</h4>
+        <p><a href="{% url 'books_cds:book_edit' book_id=book.book_id %}">Edit</a></p>
+        <p><a href="{% url 'books_cds:book_delete' book_id=book.book_id %}">Remove Book</a></p>
+    
+    {% elif user.is_authenticated %}
+        <h4>Book Available:
+            {% if book.book_quantity > 0 %}
+                 Yes</h4>
+            {% endif %}
+        
+        <p><a href="{% url 'reserve:createreserve' book_id=book.book_id %}">Reserve</a></p>
+
+    {% endif %}
+
+{% endblock %}

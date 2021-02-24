@@ -1,0 +1,92 @@
+body{
+    background-color: rgba(182, 187, 189, 0.781);
+    background-attachment: fixed;
+    font-size: 18px;
+}
+
+body *{
+    font-family: Georgia;
+}
+
+.main-heading{
+    font-size: 70px;
+}
+
+.wrapper{
+    max-width: 800px;
+    margin: 0 auto;
+    border: 2px solid #6d7272;
+    padding: 30px;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+ul.heading-list{
+    list-style-type:square
+}
+  
+div.login-signup{
+    font-size: 24px;
+}
+
+div.logout{
+    text-align: right;
+}
+
+.logged-in-username{
+    text-align: right;
+}
+
+.welcome-message{
+    font-size: 28px;
+}
+
+h1{
+    font-size: 40px;
+}
+
+
+/* menu-options {
+  display: inline;
+} */
+
+/* label{
+    display: inline-block;
+	width: 100px;
+	text-align: center;
+} */
+
+/* .menu-options{
+    align-items:flex-end;
+} */
+
+/* div.wrapper h1{
+	text-align: center;
+	margin: 20px auto;
+	font-size: 48px;
+} */
+
+/* div.auth-options{
+    text-align: right;
+} */
+
+/* header{
+	display: grid;
+	grid-template-columns: auto auto;
+	padding: 20px 0;
+}  */
+
+/* nav{
+	justify-self: end;
+    border: 3px solid #6d7272;
+} */
+
+/* nav li{
+	display: inline-block;
+	margin-left: 20px;
+} */

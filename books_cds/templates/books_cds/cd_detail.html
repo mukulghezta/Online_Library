@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ cd.cd_name }}</h1>
+    <h4>CD Title: {{ cd.cd_name }}</h4>
+    <h4>CD Artist: {{ cd.cd_artist }}</h4>
+    <h4>CD Language: {{ cd.cd_language }}</h4>
+
+    {% if user.is_superuser %}
+        <p><a href="{% url 'books_cds:cd_edit' cd_id=cd.cd_id %}">Edit</a></p>
+        <p><a href="{% url 'books_cds:cd_delete' cd_id=cd.cd_id %}">Remove Book</a></p>
+
+    {% elif user.is_authenticated %}
+         <h4>CD Available:
+        {% if cd.cd_quantity > 0 %}
+             Yes</h4>
+        {% endif %}
+        <p><a href="{% url 'reserve:createcdreserve' cd_id=cd.cd_id %}">Reserve</a></p>
+
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>Are you sure you want to reserve this book?</h3>
+    <form action="{% url 'reserve:createreserve' book_id=book.book_id %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Yes"></form>
+        <a href="{% url 'books_cds:home' %}">No</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    {% for message in messages %}
+    <h3> {{ message }} </h3>
+    {% endfor %}
+
+    <h1><b>Login</b></h1><br>
+    <form class="site-form" action="http://127.0.0.1:8000/accounts/login/" method="POST">
+        {% csrf_token %}
+        <label for="username">Username </label>
+        <input type="text" id="username" name="username"><br><br>
+
+        <label for="pwd">Password </label>
+        <input type="password" id="pwd" class="m" name="pwd"><br><br>
+        
+        <input type="submit" value="Login"></input>
+    </form>
+
+{% endblock %}
